@@ -41,6 +41,7 @@ What things you need to install the software and how to install them
 
 Please read [CONTRIBUTING.md]() for details on our code of conduct, and the process for submitting pull requests to us.
 
+
 ## Licence
 
 This project is licensed under the MIT License - see the [LICENSE.md](http://github.com/lunmijo/guitartuner/LICENCE.md) file for details
