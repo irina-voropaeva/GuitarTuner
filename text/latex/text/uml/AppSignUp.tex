@@ -1,0 +1,34 @@
+\begin{umlstyle}
+
+\begin{umlseqdiag}
+	\umlactor[no ddots, x=1]{Admin}
+	\umlboundary[no ddots, x=5]{App}
+	\umldatabase[no ddots, x=14, fill=blue!20]{DB}
+	
+	\begin{umlcall}[op=Sign up request, type=synchron, return=Response, padding=3]{Admin}{App}
+	
+		\begin{umlfragment}[type=SignUp]
+			\umlcreatecall[no ddots, x=8]{App}{DbUser}
+			\begin{umlcall}[op=Init, type=synchron, return=Response]{App}{DbUser}
+				\begin{umlcall}[op=Set data, type=synchron, return=]{DbUser}{DbUser}
+					\umlcreatecall[no ddots, x=11]{DbUser}{DbRole}
+					\begin{umlcall}[op=Set data, type=synchron, return=Role]{DbUser}{DbRole}
+						\begin{umlcall}[op=Get all, type=synchron, return=List]{DbRole}{DB}\end{umlcall}
+					\end{umlcall}
+				\end{umlcall}
+				
+				\begin{umlfragment}[type=Creating, label=OK, fill=green!10]				
+					\begin{umlcall}[op=Store, type=synchron]{DbUser}{DB}\end{umlcall}
+					\begin{umlcall}[op=Success, type=synchron]{DbUser}{DbUser}\end{umlcall}
+					\umlfpart[Error]				
+					\begin{umlcall}[op=Error, type=synchron]{DbUser}{DbUser}\end{umlcall}
+				\end{umlfragment}
+
+			\end{umlcall}
+		\end{umlfragment}
+		
+	\end{umlcall}
+	
+\end{umlseqdiag}
+
+\end{umlstyle}

@@ -1,0 +1,47 @@
+% Auth sequence uml diagram
+
+\documentclass[a4paper,10pt]{article}
+\usepackage[english]{babel}
+\usepackage[left=3cm, right=1cm, top=1cm, bottom=1cm]{geometry}
+
+\usepackage{tikz-uml}
+
+\sloppy
+\hyphenpenalty 10000000
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\begin{tikzpicture}
+\begin{umlseqdiag}
+	\umlactor[no ddots, x=1]{User}
+	\umlboundary[no ddots, x=5]{App}
+	\umldatabase[no ddots, x=14, fill=blue!20]{DB}
+	
+	\begin{umlcall}[op=delete request, type=synchron, return=sesponse, padding=3]{User}{App}
+		\begin{umlcall}[op=auth procedure, type=synchron]{App}{App}\end{umlcall}
+		
+		\begin{umlfragment}[type=Delete, label=OK, fill=green!20]
+				\umlcreatecall[no ddots, x=11]{App}{Object}
+				\begin{umlcall}[op=parameters, type=synchron, return=object]{App}{Object}
+					\begin{umlcall}[op=select query, type=synchron, return=rows]{Object}{DB}\end{umlcall}
+					\begin{umlcall}[op=set timestamp, type=synchron]{Object}{Object}\end{umlcall}
+					\begin{umlcall}[op=store, type=synchron, return=result]{Object}{DB}\end{umlcall}
+				\end{umlcall}	
+				
+				
+			\umlfpart[Error]
+			
+			\begin{umlcall}[op=error, type=synchron]{App}{App}\end{umlcall}
+		
+		\end{umlfragment}
+		
+	\end{umlcall}
+		
+	\umlnote[x=8, y=-5.25, fill=cyan!20]{Object}{Record don't deletes really, but deleting timestamp sets to current}
+	
+\end{umlseqdiag}
+\end{tikzpicture}
+\end{center}
+
+\end{document}

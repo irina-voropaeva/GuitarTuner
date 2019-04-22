@@ -1,0 +1,4 @@
+app.method(
+	path, 
+	handler
+)

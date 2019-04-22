@@ -1,0 +1,34 @@
+\begin{umlstyle}
+
+\begin{umlseqdiag}
+	\umlactor[no ddots, x=1]{User}
+	\umlboundary[no ddots, x=5]{App}
+	\umldatabase[no ddots, x=14, fill=blue!20]{DB}
+	
+	\begin{umlcall}[op=post request, type=synchron, return=response, padding=3]{User}{App}
+		\begin{umlfragment}[type=Auth, fill=cyan!20]
+			\umlcreatecall[no ddots, x=8]{App}{JWT}
+			\begin{umlcall}[op=init, type=synchron, return=response]{App}{JWT}
+				\begin{umlcall}[op=verify JWT, type=synchron]{JWT}{JWT}\end{umlcall}
+			\end{umlcall}
+		\end{umlfragment}
+		
+		\begin{umlfragment}[type=Create, label=OK, fill=green!20]
+	
+			\umlcreatecall[no ddots, x=11]{App}{Object}
+			\begin{umlcall}[op=parameters, type=synchron, return=object]{App}{Object}
+				\begin{umlcall}[op=select query, type=synchron, return=rows]{Object}{DB}\end{umlcall}
+					
+			\end{umlcall}	
+			
+			\umlfpart[Error]
+			
+			\begin{umlcall}[op=error, type=synchron]{App}{App}\end{umlcall}
+		
+		\end{umlfragment}
+	\end{umlcall}
+
+\end{umlseqdiag}
+
+\end{umlstyle}
+

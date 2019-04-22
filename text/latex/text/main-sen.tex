@@ -1,0 +1,42 @@
+% За основу взят github.com/Amet13/bachelor-diploma
+
+\documentclass[a4paper,14pt]{extarticle} % 14й шрифт
+\input{preamble} % Подключаем преамбулу
+
+\hypersetup{
+    colorlinks, urlcolor={black}, % Все ссылки черного цвета, кликабельные
+    linkcolor={black}, citecolor={black}, filecolor={black},
+    pdfauthor={Сенчишен Денис Олександрович},
+    pdftitle={Проектування та розробка мікросервісів для веб-додатку редагування розкладу}
+}
+
+\addbibresource{bibliography.bib} % Библиографический справочник
+
+\includeonly{
+sen/titlepage
+,sen/intro
+,sen/general
+,sen/general-ft
+,sen/music-theory
+,sen/guitar-tuner
+,sen/conclusion
+,sen/bibliography
+}
+
+%%% Начало документа
+\begin{document}
+\include{sen/titlepage} % Титульная страница
+
+\tableofcontents % Содержание 
+\clearpage
+
+\include{sen/intro} % Введение
+\include{sen/general}
+\include{sen/general-ft}
+\include{sen/music-theory} 
+\include{sen/guitar-tuner}
+\include{sen/conclusion} % Заключение
+\include{sen/bibliography} % Библиографический список
+
+\end{document}
+%%% Конец документа
