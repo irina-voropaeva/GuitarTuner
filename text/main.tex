@@ -1,0 +1,40 @@
+% За основу взят github.com/Amet13/bachelor-diploma
+
+\documentclass[a4paper,14pt]{extarticle} % 14й шрифт
+\input{preamble} % Подключаем преамбулу
+
+\hypersetup{
+    colorlinks, urlcolor={black}, % Все ссылки черного цвета, кликабельные
+    linkcolor={black}, citecolor={black}, filecolor={black},
+    pdfauthor={Воропаєва Ірина Владиславівна},
+    pdftitle={Аналіз аудіосигналу із застосуванням перетворення Фур’є для знаходженнячастоти ноти на прикладі гітарного тюнеру засобами Java}
+}
+
+\addbibresource{bibliography.bib} % Библиографический справочник
+
+\includeonly{
+vor/titlepage
+,vor/intro
+,vor/analyze
+,vor/general-ft
+,vor/guitar-tuner
+,vor/conclusion
+,vor/bibliography
+}
+
+%%% Начало документа
+\begin{document}
+\include{vor/titlepage} % Титульная страница
+
+\tableofcontents % Содержание 
+\clearpage
+
+\include{vor/intro} % Введение
+\include{vor/analyze} % Анализ имеющихся аналогов
+\include{vor/general-ft} % Теория
+\include{vor/guitar-tuner} % Практическая часть
+\include{vor/conclusion} % Заключение
+\include{vor/bibliography} % Библиографический список
+
+\end{document}
+%%% Конец документа

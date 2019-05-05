@@ -1,4 +1,0 @@
-app.method(
-	path, 
-	handler
-)
