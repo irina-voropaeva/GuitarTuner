@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#00FF22</color>
+    <color name="background">#000000</color>
+    <color name="ukrButton">#8799FF</color>
+    <color name="engButton">#FF8989</color>
+    <color name="white">#FEFFFF</color>
 </resources>

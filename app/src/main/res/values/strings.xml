@@ -1,3 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GuitarTuner</string>
+    <string name="app_name">Guitar Tuner</string>
+    <string name="findedNote">A</string>
+    <string name="anotherNoteName">G##/Bbb</string>
+    <string name="ukr_lang">UKR</string>
+    <string name="eng_lang">ENG</string>
+    <string name="recomendation">Perfect tension</string>
+    <string name="actualFrequency">Recognized frequency: 440 Hz</string>
+    <string name="expectedFrequency">Nearest note frequency: 440 Hz</string>
+
 </resources>
