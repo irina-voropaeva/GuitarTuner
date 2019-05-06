@@ -1,4 +1,4 @@
-package com.ksu.lunmijo.guitartuner.config;
+package com.ksu.lunmijo.guitartuner.audiorecorder.config;
 
 /**
  * An interface providing access to audio recording and playback configuration details.

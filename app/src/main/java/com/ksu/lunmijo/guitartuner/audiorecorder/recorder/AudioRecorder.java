@@ -1,4 +1,4 @@
-package com.ksu.lunmijo.guitartuner.recorder;
+package com.ksu.lunmijo.guitartuner.audiorecorder.recorder;
 
 /**
  * An interface for a class that records or reads audio data into a returned array buffer.

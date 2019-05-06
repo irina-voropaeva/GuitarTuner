@@ -1,6 +1,6 @@
-package com.ksu.lunmijo.guitartuner.converter;
+package com.ksu.lunmijo.guitartuner.audiorecorder.converter;
 
-import com.ksu.lunmijo.guitartuner.config.AudioConfig;
+import com.ksu.lunmijo.guitartuner.audiorecorder.config.AudioConfig;
 
 /**
  * An implementation of the {@link FrequencyConverter} interface that converts a provided frequency

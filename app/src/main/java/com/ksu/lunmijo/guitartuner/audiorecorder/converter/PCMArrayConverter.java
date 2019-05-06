@@ -1,4 +1,4 @@
-package com.ksu.lunmijo.guitartuner.converter;
+package com.ksu.lunmijo.guitartuner.audiorecorder.converter;
 
 /**
  * An implementation of the {@link ArrayConverter} interface that works with 16-bit PCM data.

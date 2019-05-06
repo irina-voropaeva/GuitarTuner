@@ -1,4 +1,4 @@
-package com.ksu.lunmijo.guitartuner.config;
+package com.ksu.lunmijo.guitartuner.audiorecorder.config;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;

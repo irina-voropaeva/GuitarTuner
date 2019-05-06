@@ -1,4 +1,4 @@
-package com.ksu.lunmijo.guitartuner.converter;
+package com.ksu.lunmijo.guitartuner.audiorecorder.converter;
 
 /**
  * An interface for a class that converts a provided frequency into a buffer array of waveform audio

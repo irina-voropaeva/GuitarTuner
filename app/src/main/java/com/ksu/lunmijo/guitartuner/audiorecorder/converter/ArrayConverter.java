@@ -1,4 +1,4 @@
-package com.ksu.lunmijo.guitartuner.converter;
+package com.ksu.lunmijo.guitartuner.audiorecorder.converter;
 
 /**
  * An interface for a class that converters byte or short arrays to a float array representing the

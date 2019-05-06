@@ -1,10 +1,10 @@
-package com.ksu.lunmijo.guitartuner.recorder;
+package com.ksu.lunmijo.guitartuner.audiorecorder.recorder;
 
 import android.media.AudioRecord;
 import android.os.Build;
 
-import com.ksu.lunmijo.guitartuner.config.AudioConfig;
-import com.ksu.lunmijo.guitartuner.converter.ArrayConverter;
+import com.ksu.lunmijo.guitartuner.audiorecorder.config.AudioConfig;
+import com.ksu.lunmijo.guitartuner.audiorecorder.converter.ArrayConverter;
 
 public class AndroidAudioRecorder implements AudioRecorder {
 
@@ -42,7 +42,6 @@ public class AndroidAudioRecorder implements AudioRecorder {
 
             converter.convert(buffer, floatBuffer);
         }
-        System.out.println("Bytes: " + floatBuffer);
         return floatBuffer;
     }
 }
