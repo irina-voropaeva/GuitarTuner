@@ -1,4 +1,4 @@
-package com.ksu.lunmijo.guitartuner.audiorecorder.config;
+package com.ksu.lunmijo.guitartuner.audiorecorder;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -6,10 +6,7 @@ import android.media.AudioTrack;
 import android.media.MediaRecorder;
 import android.os.Build;
 
-/**
- * An Android implementation of the {@link AudioConfig} interface.
- */
-public class AndroidAudioConfig implements AudioConfig {
+public class AndroidAudioConfig {
 
     private static final int AUDIO_SAMPLE_RATE = 44100;
 
@@ -35,57 +32,46 @@ public class AndroidAudioConfig implements AudioConfig {
         // Default constructor
     }
 
-    @Override
     public int getSampleRate() {
         return AUDIO_SAMPLE_RATE;
     }
 
-    @Override
     public int getInputBufferSize() {
         return AUDIO_RECORD_BUFFER_SIZE;
     }
 
-    @Override
     public int getOutputBufferSize() {
         return AUDIO_PLAYER_BUFFER_SIZE;
     }
 
-    @Override
     public int getReadSize() {
         return AUDIO_RECORD_READ_SIZE;
     }
 
-    @Override
     public int getWriteSize() {
         return AUDIO_PLAYER_WRITE_SIZE;
     }
 
-    @Override
     public int getInputChannel() {
         return AUDIO_RECORD_CHANNEL_CONFIG;
     }
 
-    @Override
     public int getOutputChannel() {
         return AUDIO_PLAYER_CHANNEL_CONFIG;
     }
 
-    @Override
     public int getInputFormat() {
         return AUDIO_RECORD_AUDIO_FORMAT;
     }
 
-    @Override
     public int getOutputFormat() {
         return AUDIO_PLAYER_AUDIO_FORMAT;
     }
 
-    @Override
     public int getOutputFormatByteCount() {
         return AUDIO_PLAYER_AUDIO_FORMAT_BYTE_COUNT;
     }
 
-    @Override
     public int getInputSource() {
         return AUDIO_RECORD_AUDIO_SOURCE;
     }

@@ -6,10 +6,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.ksu.lunmijo.guitartuner.audiorecorder.config.AndroidAudioConfig;
+import com.ksu.lunmijo.guitartuner.audiorecorder.AndroidAudioConfig;
 import com.ksu.lunmijo.guitartuner.audiorecorder.converter.PCMArrayConverter;
-import com.ksu.lunmijo.guitartuner.audiorecorder.recorder.AndroidAudioRecorder;
-import com.ksu.lunmijo.guitartuner.audiorecorder.recorder.AudioRecorder;
+import com.ksu.lunmijo.guitartuner.audiorecorder.AndroidAudioRecorder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                     123);
         }
         else {
-            AudioRecorder audioRecorder = new AndroidAudioRecorder(new AndroidAudioConfig(), new PCMArrayConverter());
+            AndroidAudioRecorder audioRecorder = new AndroidAudioRecorder(new AndroidAudioConfig(), new PCMArrayConverter());
             audioRecorder.startRecording();
         }
 

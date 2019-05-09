@@ -1,6 +1,6 @@
 package com.ksu.lunmijo.guitartuner.audiorecorder.converter;
 
-import com.ksu.lunmijo.guitartuner.audiorecorder.config.AudioConfig;
+import com.ksu.lunmijo.guitartuner.audiorecorder.AndroidAudioConfig;
 
 /**
  * An implementation of the {@link FrequencyConverter} interface that converts a provided frequency
@@ -14,7 +14,7 @@ public class SineWaveFrequencyConverter implements FrequencyConverter {
     private final int initialWriteBufferSize;
     private final int outputFormatByteCount;
 
-    public SineWaveFrequencyConverter(final AudioConfig audioConfig) {
+    public SineWaveFrequencyConverter(final AndroidAudioConfig audioConfig) {
         sampleRate = audioConfig.getSampleRate();
         initialWriteBufferSize = audioConfig.getWriteSize();
         outputFormatByteCount = audioConfig.getOutputFormatByteCount();

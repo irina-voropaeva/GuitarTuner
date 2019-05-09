@@ -4,7 +4,6 @@
 \usepackage{xunicode} % Unicode для XeTeX
 \usepackage{xltxtra}  % Верхние и нижние индексы
 \usepackage{pdfpages} % Вставка PDF
-\usepackage{lipsum} % to generate lorem ipsum
 
 \usepackage{listings} % Оформление исходного кода
 \lstset{
@@ -17,8 +16,7 @@
 % Шрифты, xelatex
 \defaultfontfeatures{Ligatures=TeX}
 \setmainfont{Times New Roman} % Нормоконтроллеры хотят именно его
-%\newfontfamily\cyrillicfont{Times New Roman}[Script=Cyrillic]
-\newfontfamily\cyrillicfonttt{Courier New}
+\newfontfamily\cyrillicfont{Times New Roman}
 %\setsansfont{Liberation Sans} % Тут я его не использую, но если пригодится
 \setmonofont{FreeMono} % Моноширинный шрифт для оформления кода
 
@@ -44,6 +42,8 @@ isbn=false,
 dashed=false, 
 url=false %все false выключают отображение полей, заполненных в библиографической базе, но не актуальных для печатного листа
 ]{biblatex} % Библиография
+
+\usepackage{import} % Разбиение текста проекта на файлы
 
 \usepackage{import} % Разбиение текста проекта на файлы
 
@@ -110,6 +110,7 @@ url=false %все false выключают отображение полей, з
 \renewcommand\cftsecleader{\cftdotfill{\cftdotsep}} % Точки для секций в содержании
 \renewcommand\cftsecpagefont{\mdseries}             % Номера страниц не жирные
 \setcounter{tocdepth}{3}                            % Глубина оглавления, до subsection
+\setcounter{secnumdepth}{4}                         % Глубина нумерации, до paragraph
 
 % Нумерация страниц справа сверху
 \usepackage{fancyhdr}
@@ -134,7 +135,7 @@ url=false %все false выключают отображение полей, з
 \addto\captionsrussian{\renewcommand{\figurename}{Рис.}} % Имя фигуры
 
 % Пользовательские функции
-\usepackage{flafter} % рисунко появится не раньше первой ссылки на него
+\usepackage{flafter} % рисунок появится не раньше первой ссылки на него
 \renewcommand{\floatpagefraction}{.8}
 \renewcommand{\topfraction}{.8}
 \renewcommand{\bottomfraction}{.4}
@@ -163,10 +164,21 @@ url=false %все false выключают отображение полей, з
 \newcommand{\addtwoimghere}[5]{ % Вставка двух рисунков
     \begin{figure}[H]
         \centering
-        \includegraphics[width=#2\linewidth]{#1}
+        \includegraphics[width=#3\linewidth]{#1}
         \hfill
         \includegraphics[width=#3\linewidth]{#2}
         \caption{#4} \label{#5}
+    \end{figure}
+}
+\newcommand{\addthreeimghere}[6]{ % Вставка трех рисунков
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#4\linewidth]{#1}
+        \hfill
+        \includegraphics[width=#4\linewidth]{#2}
+        \hfill
+        \includegraphics[width=#4\linewidth]{#3}
+        \caption{#5} \label{#6}
     \end{figure}
 }
 \newcommand{\addimgapp}[2]{ % Это костыль для приложения Б
@@ -194,24 +206,24 @@ url=false %все false выключают отображение полей, з
 
 % Оформление заголовков
 \usepackage[compact,explicit]{titlesec}
-\titleformat{\section}{}{}{12.5mm}{\centering{\thesection\quad\MakeTextUppercase{#1}}}
+\titleformat{\section}{}{}{0mm}{\centering\bfseries{\thesection\quad\MakeTextUppercase{#1}}}
 \titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\thesubsection\quad#1}
 \titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\thesubsubsection\quad#1}
-\titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
+\titleformat{\paragraph}[block]{\vspace{1em}\normalfont\normalsize}{}{12.5mm}{\theparagraph\quad#1}
 
 \pdfstringdefDisableCommands{\let\uppercase\relax} % \uppercase не поддерживается в закладках pdf
 
 % Секции без номеров (введение, заключение...), вместо section*{}
 \newcommand{\anonsection}[1]{
+    {\centering\bfseries{#1}\par}
     \phantomsection % Корректный переход по ссылкам в содержании
-    \paragraph{\centerline{{#1}}}
     \addcontentsline{toc}{section}{\uppercase{#1}}
 }
 
 % Секции для приложений
 \newcommand{\appsection}[1]{
+    {\centering\bfseries{#1}\par}
     \phantomsection
-    \paragraph{\centerline{{#1}}}
     \addcontentsline{toc}{section}{\uppercase{#1}}
 }
 
