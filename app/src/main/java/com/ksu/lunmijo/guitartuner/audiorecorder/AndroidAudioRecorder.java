@@ -9,7 +9,7 @@ public class AndroidAudioRecorder {
 
     private final ArrayConverter converter;
     private final AudioRecord audioRecorder;
-    private final int readSize;
+    private final int readSize = 4096;
     private final short[] buffer;
     private final float[] floatBuffer;
 
@@ -17,7 +17,6 @@ public class AndroidAudioRecorder {
         this.converter = converter;
         this.audioRecorder = new AudioRecord(audioConfig.getInputSource(), audioConfig.getSampleRate(),
                 audioConfig.getInputChannel(), audioConfig.getInputFormat(), audioConfig.getInputBufferSize());
-        this.readSize = audioConfig.getReadSize();
         this.buffer = new short[readSize];
         this.floatBuffer = new float[readSize];
     }

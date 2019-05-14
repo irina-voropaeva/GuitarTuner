@@ -1,7 +1,11 @@
 package com.ksu.lunmijo.guitartuner;
 
 import android.Manifest;
+import android.app.Application;
 import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.annotation.UiThread;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +13,10 @@ import android.os.Bundle;
 import com.ksu.lunmijo.guitartuner.audiorecorder.AndroidAudioConfig;
 import com.ksu.lunmijo.guitartuner.audiorecorder.converter.PCMArrayConverter;
 import com.ksu.lunmijo.guitartuner.audiorecorder.AndroidAudioRecorder;
+import com.ksu.lunmijo.guitartuner.threads.AnalyzerThread;
+import com.ksu.lunmijo.guitartuner.threads.AudioRecordThread;
+
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
                     123);
         }
         else {
-            AndroidAudioRecorder audioRecorder = new AndroidAudioRecorder(new AndroidAudioConfig(), new PCMArrayConverter());
-            audioRecorder.startRecording();
+                new AudioRecordThread().run();
+                new AnalyzerThread().run();
         }
 
     }
