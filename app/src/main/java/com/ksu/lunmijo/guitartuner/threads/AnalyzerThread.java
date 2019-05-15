@@ -1,28 +1,35 @@
 package com.ksu.lunmijo.guitartuner.threads;
 
+import android.app.Activity;
+
+import com.ksu.lunmijo.guitartuner.MainActivity;
 import com.ksu.lunmijo.guitartuner.detection.FFT.Complex;
 import com.ksu.lunmijo.guitartuner.detection.FFT.FFT;
 
 public class AnalyzerThread implements Runnable {
 
+    Activity activity;
+
+    public AnalyzerThread(Activity activity) {
+        this.activity = activity;
+    }
     public void run() {
             Complex[] complexArray = this.makeComplexArray();
+        MainActivity.commonInformationForThreads.setComplexArray(FFT.fft(complexArray));
 
-            CommonInformationForThreads.setComplexArray(FFT.fft(complexArray));
+            double[] frequencies = this.makeFrequenciesArray(MainActivity.commonInformationForThreads.getComplexArray());
 
-            double[] frequencies = this.makeFrequenciesArray(CommonInformationForThreads.getComplexArray());
-
-            CommonInformationForThreads.setFrequency(this.maxFrequency(frequencies));
+        MainActivity.commonInformationForThreads.setFrequency(this.maxFrequency(frequencies));
 
     }
 
     private Complex[] makeComplexArray() {
 
-        int byteArrayLength = CommonInformationForThreads.getBytes().length;
+        int byteArrayLength = MainActivity.commonInformationForThreads.getBytes().length;
         Complex[] complexArray = new Complex[byteArrayLength];
 
         for (int i = 0; i < byteArrayLength; i++) {
-            complexArray[i] = new Complex(CommonInformationForThreads.getBytes()[i], 0);
+            complexArray[i] = new Complex(MainActivity.commonInformationForThreads.getBytes()[i], 0);
         }
 
         return complexArray;

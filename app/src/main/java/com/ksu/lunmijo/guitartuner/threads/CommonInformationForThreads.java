@@ -4,34 +4,44 @@ import com.ksu.lunmijo.guitartuner.detection.FFT.Complex;
 
 public class CommonInformationForThreads {
 
-    private static volatile float[] bytes;
+    private volatile float[] bytes;
 
-    private static volatile Complex[] complexArray;
+    private volatile Complex[] complexArray;
 
-    private static volatile double frequency;
+    private volatile double frequency;
 
-    public static float[] getBytes() {
+    private volatile String noteName = "C";
+
+    public float[] getBytes() {
         return bytes;
     }
 
-    public static void setBytes(float[] array) {
-        bytes = array;
+    public void setBytes(float[] array) {
+        this.bytes = array;
     }
 
-    public static Complex[] getComplexArray() {
-        return complexArray;
+    public Complex[] getComplexArray() {
+        return this.complexArray;
     }
 
-    public static void setComplexArray(Complex[] array) {
-        complexArray = array;
+    public void setComplexArray(Complex[] array) {
+        this.complexArray = array;
     }
 
-    public static double getFrequency() {
-        return frequency;
+    public double getFrequency() {
+        return this.frequency;
     }
 
-    public static void setFrequency(double freq) {
-        frequency = freq;
+    public void setFrequency(double freq) {
+        this.frequency = freq;
+    }
+
+    public String getNoteName() {
+        return this.noteName;
+    }
+
+    public void setNoteName(String noteName) {
+        this.noteName = noteName;
     }
 
 }
