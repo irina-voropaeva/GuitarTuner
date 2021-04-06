@@ -3,10 +3,23 @@ package com.ksu.lunmijo.guitartuner.note;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.StrictMath.abs;
+
 
 public class MapFrequencyFinder {
 
     private final Map<NoteName, double[]> notes = new HashMap<>();
+
+    private volatile double valueFreq;
+
+    private volatile String findedNote;
+
+    public String getFindedNote() {
+        return this.findedNote;
+    }
+
+    private volatile boolean whatToDoWithString = false;
+    // фолс - подтянуть; тру - ослабить
 
     public MapFrequencyFinder() {
         notes.put(NoteName.A, new double[]{110.0, 220.0, 440.0});
@@ -26,5 +39,31 @@ public class MapFrequencyFinder {
 
     public double[] getFrequency(NoteName name) {
         return notes.get(name);
+    }
+
+    public double getNearestTone(double frequency) {
+        for (Map.Entry<NoteName, double[]> entry : notes.entrySet()) {
+
+            for (int i = 0; i < entry.getValue().length; i++) {
+                if (frequency == entry.getValue()[i]) {
+                    valueFreq = entry.getValue()[i];
+                    findedNote = entry.getKey().getName();
+
+                    return valueFreq;
+                } else if (frequency - entry.getValue()[i] > -5 && (frequency - entry.getValue()[i]) < 0) {
+                    valueFreq = entry.getValue()[i];
+                    whatToDoWithString = false;
+                    findedNote = entry.getKey().getName();
+                    return valueFreq;
+                } else if (frequency - entry.getValue()[i] < 5 && (frequency - entry.getValue()[i]) > 0) {
+                    valueFreq = entry.getValue()[i];
+                    whatToDoWithString = true;
+                    findedNote = entry.getKey().getName();
+                    return valueFreq;
+                }
+            }
+        }
+        findedNote = "U";
+        return 0.0;
     }
 }

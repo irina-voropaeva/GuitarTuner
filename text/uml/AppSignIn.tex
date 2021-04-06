@@ -1,0 +1,32 @@
+\begin{umlstyle}
+
+\begin{umlseqdiag}
+	\umlactor[no ddots, x=1]{User}
+	\umlboundary[no ddots, x=5]{App}
+	\umldatabase[no ddots, x=14, fill=blue!20]{DB}
+	
+	\begin{umlcall}[op=sign in request, type=synchron, return=response, padding=3]{User}{App}
+	
+		\begin{umlfragment}[type=Sign in]
+			\umlcreatecall[no ddots, x=8]{App}{DbUser}
+				\begin{umlcall}[op=init, type=synchron, return=response]{App}{DbUser}
+					\begin{umlcall}[op=find one, type=synchron, return=user]{DbUser}{DB}\end{umlcall}	
+					
+					\umlcreatecall[no ddots, x=11]{DbUser}{JWT}
+					\begin{umlcall}[op=check password, type=synchron, return=response]{DbUser}{JWT}\end{umlcall}
+					
+					\begin{umlfragment}[type=validate, label=OK, fill=green!10]
+						\begin{umlcall}[op=create token, type=synchron, return=token]{DbUser}{JWT}\end{umlcall}		
+						\begin{umlcall}[op=success, type=synchron]{DbUser}{DbUser}\end{umlcall}
+						\umlfpart[Error]				
+						\begin{umlcall}[op=error, type=synchron]{DbUser}{DbUser}\end{umlcall}
+					\end{umlfragment}
+					
+				\end{umlcall}	
+		\end{umlfragment}
+		
+	\end{umlcall}
+	
+\end{umlseqdiag}
+
+\end{umlstyle}

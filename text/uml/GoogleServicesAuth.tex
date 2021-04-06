@@ -1,0 +1,41 @@
+\begin{umlstyle}
+
+\begin{umlseqdiag}
+	\umlactor[no ddots, x=1]{User}
+	\umlboundary[no ddots, x=5]{App}
+	\umldatabase[no ddots, x=11.5, fill=blue!20]{FileSystem}
+	\umlboundary[no ddots, x=13.5]{AuthAPI}
+	
+	\begin{umlcall}[op=auth required action, type=synchron, return=response, padding=-4]{User}{App}
+	
+		\begin{umlfragment}[type=Auth]
+			\begin{umlcall}[op=read credentials, type=synchron, return=credentials]{App}{FileSystem}\end{umlcall}
+			\begin{umlcall}[op=authorise, type=synchron, return=oAuth2]{App}{AuthAPI}\end{umlcall}
+			
+			\begin{umlfragment}[type=oAuth2, label=Error, fill=green!10]
+				\umlcreatecall[no ddots, x=8.25]{App}{oAuth2}
+				\begin{umlcall}[op=get new token, type=synchron, return=oAuth2]{App}{oAuth2}
+					\begin{umlcall}[op=generate URL, type=synchron, return=URL]{oAuth2}{AuthAPI}\end{umlcall}
+					\begin{umlcall}[op=prompt interface, type=synchron, return=code]{oAuth2}{App}
+						\begin{umlcall}[op=visit URL request, type=synchron, return=input code]{App}{User}\end{umlcall}			
+					\end{umlcall}
+					\begin{umlcall}[op=set credentials, type=synchron, return=]{oAuth2}{oAuth2}\end{umlcall}
+					\begin{umlcall}[op=write token, type=synchron]{oAuth2}{FileSystem}\end{umlcall}	
+				\end{umlcall}
+				
+				\umlfpart[OK]
+				\begin{umlcall}[op=create, type=synchron, return=oAuth2]{App}{oAuth2}
+					\begin{umlcall}[op=set credentials, type=synchron, return=]{oAuth2}{oAuth2}\end{umlcall}
+				\end{umlcall}
+				
+			\end{umlfragment}
+			
+		\end{umlfragment}
+		
+		\begin{umlcall}[op=call action, type=synchron, return=, dt=-1]{App}{App}\end{umlcall}
+		
+	\end{umlcall}
+	
+\end{umlseqdiag}
+
+\end{umlstyle}

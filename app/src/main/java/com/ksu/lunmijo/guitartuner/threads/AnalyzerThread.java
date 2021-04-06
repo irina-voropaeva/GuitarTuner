@@ -6,7 +6,7 @@ import com.ksu.lunmijo.guitartuner.MainActivity;
 import com.ksu.lunmijo.guitartuner.detection.FFT.Complex;
 import com.ksu.lunmijo.guitartuner.detection.FFT.FFT;
 
-public class AnalyzerThread implements Runnable {
+public class AnalyzerThread extends Thread {
 
     Activity activity;
 

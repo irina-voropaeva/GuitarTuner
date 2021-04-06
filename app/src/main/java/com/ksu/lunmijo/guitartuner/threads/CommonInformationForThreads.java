@@ -12,6 +12,10 @@ public class CommonInformationForThreads {
 
     private volatile String noteName = "C";
 
+    private volatile String recomendation = "Perfect tone";
+
+    private volatile boolean isOkNote = true;
+
     public float[] getBytes() {
         return bytes;
     }
@@ -42,6 +46,14 @@ public class CommonInformationForThreads {
 
     public void setNoteName(String noteName) {
         this.noteName = noteName;
+    }
+
+    public boolean getIsOkNote() {
+        return this.isOkNote;
+    }
+
+    public void setIsOkNote(boolean isOk) {
+        this.isOkNote = isOk;
     }
 
 }

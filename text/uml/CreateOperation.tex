@@ -1,0 +1,33 @@
+\begin{umlstyle}
+
+\begin{umlseqdiag}
+	\umlactor[no ddots, x=1]{User}
+	\umlboundary[no ddots, x=5]{App}
+	\umldatabase[no ddots, x=14, fill=blue!20]{DB}
+	
+	\begin{umlcall}[op=post request, type=synchron, return=response, padding=3]{User}{App}
+		\begin{umlcall}[op=auth procedure, type=synchron]{App}{App}\end{umlcall}
+		
+		\begin{umlfragment}[type=create, fill=green!20, label=OK]
+				\umlcreatecall[no ddots, x=11]{App}{Object}
+				\begin{umlcall}[op=init, type=synchron, return=object]{App}{Object}
+					\begin{umlfragment}[type=Store, name=Store, fill=cyan!20, label=OK]
+						\begin{umlcall}[op=insert query, type=synchron, return=result]{Object}{DB}
+							\begin{umlcall}[op=run query, type=synchron]{DB}{DB}\end{umlcall}				
+						\end{umlcall}
+					\end{umlfragment}
+				\end{umlcall}	
+				
+			\umlnote[x=15.1, y=-8.8, fill=cyan!20]{Store}{Check permissions for run query, validate and run it (store object or raise an exception)}
+			\umlfpart[Error]
+			\begin{umlcall}[op=undo creation, type=synchron,]{App}{Object}\end{umlcall}
+			\begin{umlcall}[op=error, type=synchron]{App}{App}\end{umlcall}
+		
+		\end{umlfragment}
+	\end{umlcall}
+		
+	
+\end{umlseqdiag}
+
+\end{umlstyle}
+
